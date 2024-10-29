@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Knight Rider</title>
+  <style>
+    body{
+      background: black;
+    }
+
+    section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 750px;
+      justify-content: center;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .box{
+      width: 100px;
+      aspect-ratio: 2/1;
+      display: inline-block;
+      border-radius: 10px;
+    }
+
+
+
+    #div2>.box:first-child{
+      background: white;
+    }
+
+    #div2>.box:nth-child(2){
+      background: white;
+    }
+
+    #div2>.box:nth-child(3){
+      background: white;
+    }
+
+    #div2>.box:nth-child(4){
+      background: white;
+    }
+    #div2>.box:nth-child(5){
+      background: white;
+    }
+
+    #div2>.box:nth-child(6){
+      background: white;
+    }
+
+
+    section>#div2{
+      justify-content: center;
+      margin: 2px 0;
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+      padding: 10px 0;
+    }
+
+  </style>
+</head>
+
+
+
+
+<body>
+<script src="Assest/lib/jquery-3.7.1.min.js"></script>
+<section>
+
+
+
+
+  <div id="div2">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+
+
+  <div>
+    <button style="background: green" id="start">start</button>
+    <button style="background: red" id="stop">stop</button>
+  </div>
+
+
+  <script src="Assest/lib/jquery-3.7.1.min.js"></script>
+  <script>
+
+    const box_count = 6;
+    let current_box = 0;
+    let direction = "right";
+    let intervalId = null;
+
+    update_box=()=> {
+      if (direction == "right"){
+
+
+        current_box++;
+        $(".box").css("background","white");
+        $(".box").eq(current_box).css("background","red");
+        $(".box").eq(current_box-1).css("background","pink");
+
+        if (current_box==box_count-1){
+          direction = "LEFT";
+
+        }
+
+      } else {
+
+        current_box--;
+        $(".box").css("background","white");
+        $(".box").eq(current_box).css("background","red");
+        $(".box").eq(current_box+1).css("background","pink");
+
+        if (current_box==0){
+          direction = "LEFT";
+        }
+
+      }
+    }
+
+    $('#start').on('click',function () {
+      intervalId =setInterval(update_box,100);
+
+    });
+    $('#stop').on('click',function () {
+      clearInterval(intervalId);
+    });
+
+
+
+
+
+  </script>
+</body>
+</html>
